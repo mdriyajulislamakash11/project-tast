@@ -7,9 +7,13 @@ const MainLayout = () => {
   return (
     <div className="w-10/12 mx-auto">
       <Navbar />
-      <div className="grid ">
-        <Menu />
-        <Outlet />
+      <div className="flex ">
+        <div>
+          <Menu />
+        </div>
+        <div className="flex-1 my-5 py-4">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

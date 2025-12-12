@@ -17,12 +17,17 @@ const Dashboard = () => {
   console.log(invoices);
 
   return <div>
-    <div>
+    <div className="flex justify-between ">
         {/* content */}
-        <div></div>
+        <div>
+            <h2 className="text-4xl font-bold ">Good afternoon, Alex </h2>
+            <p>Today is Thursday, June 19, 2025</p>
+        </div>
 
         {/* button */}
-        <div></div>
+        <div>
+            <button>+ Create Invoices</button>
+        </div>
     </div>
 
   </div>;
