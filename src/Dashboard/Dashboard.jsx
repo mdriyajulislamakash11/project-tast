@@ -8,7 +8,6 @@ const Dashboard = () => {
     fetch("/data.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInvoices(data);
       });
   }, []);
@@ -36,38 +35,86 @@ const Dashboard = () => {
       <div className="flex gap-2   px-2">
         {/* card 1 */}
         <div className="shadow-md p-4 my-4 w-80 bg-white">
-            <div className="flex justify-end">
-                <button className="rounded btn btn-outline flex items-center gap-3"> <FaCalendar /> Last 7 Days</button>
-            </div>
-            <p className="text-xl font-semibold mt-2">Total Sales</p>
-            <h1 className="text-2xl font-bold">$1,637</h1>
+          <div className="flex justify-end">
+            <button className="rounded btn btn-outline flex items-center gap-3">
+              {" "}
+              <FaCalendar /> Last 7 Days
+            </button>
+          </div>
+          <p className="text-xl font-semibold mt-2">Total Sales</p>
+          <h1 className="text-2xl font-bold">$1,637</h1>
         </div>
         {/* card 1 */}
         <div className="shadow-md p-4 my-4 w-80 bg-white">
-            <div className="flex justify-end">
-                <button className="rounded btn btn-outline flex items-center gap-3"> <FaCalendar /> Last 7 Days</button>
-            </div>
-            <p className="text-xl font-semibold mt-2">Total Outstanding Balance</p>
-            <h1 className="text-2xl font-bold">$1,637</h1>
+          <div className="flex justify-end">
+            <button className="rounded btn btn-outline flex items-center gap-3">
+              {" "}
+              <FaCalendar /> Last 7 Days
+            </button>
+          </div>
+          <p className="text-xl font-semibold mt-2">
+            Total Outstanding Balance
+          </p>
+          <h1 className="text-2xl font-bold">$1,637</h1>
         </div>
         {/* card 1 */}
         <div className="shadow-md p-4 my-4 w-80 bg-white">
-            <div className="flex justify-end">
-                <button className="rounded btn btn-outline flex items-center gap-3"> <FaCalendar /> Last 7 Days</button>
-            </div>
-            <p className="text-xl mt-2 font-semibold">Total Estimate</p>
-            <h1 className="text-2xl font-bold">$1,637</h1>
+          <div className="flex justify-end">
+            <button className="rounded btn btn-outline flex items-center gap-3">
+              {" "}
+              <FaCalendar /> Last 7 Days
+            </button>
+          </div>
+          <p className="text-xl mt-2 font-semibold">Total Estimate</p>
+          <h1 className="text-2xl font-bold">$1,637</h1>
         </div>
         {/* card 1 */}
         <div className="shadow-md bg-white p-4 my-4 w-80">
-            <div className="flex justify-end">
-                <button className="rounded btn btn-outline flex items-center gap-3"> <FaCalendar /> Last 7 Days</button>
-            </div>
-            <p className="text-xl mt-2 font-semibold">Total Refunds</p>
-            <h1 className="text-2xl font-bold">$1,637</h1>
+          <div className="flex justify-end">
+            <button className="rounded btn btn-outline flex items-center gap-3">
+              {" "}
+              <FaCalendar /> Last 7 Days
+            </button>
+          </div>
+          <p className="text-xl mt-2 font-semibold">Total Refunds</p>
+          <h1 className="text-2xl font-bold">$1,637</h1>
         </div>
+      </div>
 
-
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Invoice</th>
+              <th>Customer Name</th>
+              <th>Status</th>
+              <th>Order Number</th>
+              <th>Amount </th>
+              <th>Tender Type</th>
+              <th>Date</th>
+              <th>Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {
+                invoices.map((invoice, index) => <tr key={invoice.invoiceId}>
+              <th>{index + 1}</th>
+              <td></td>
+              <td>Quality Control Specialist</td>
+              <td>Blue</td>
+              <td>Blue</td>
+              <td>Blue</td>
+              <td>Blue</td>
+              <td>Blue</td>
+              <td>Blue</td>
+            </tr>)
+            }
+          </tbody>
+        </table>
       </div>
 
     </div>
