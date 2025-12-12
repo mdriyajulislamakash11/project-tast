@@ -11,7 +11,7 @@ const MainLayout = () => {
         <div>
           <Menu />
         </div>
-        <div className="flex-1 my-5 py-4">
+        <div className="flex-1 my-5 p-5 bg-base-200">
           <Outlet />
         </div>
       </div>
