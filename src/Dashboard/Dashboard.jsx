@@ -3,6 +3,7 @@ import { FaCalendar } from "react-icons/fa";
 
 const Dashboard = () => {
   const [invoices, setInvoices] = useState([]);
+ 
 
   useEffect(() => {
     fetch("/data.json")
@@ -12,7 +13,16 @@ const Dashboard = () => {
       });
   }, []);
 
-  console.log(invoices);
+  //   handle edit
+  const handleEdit = (id) => {
+    console.log(id);
+  };
+
+  //   handle Delete
+  const handleDelete = (id) => {
+    const remainingData = invoices.filter((invoice) => invoice.invoiceId !== id)
+    setInvoices(remainingData)
+  };
 
   return (
     <div>
@@ -81,42 +91,75 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* fillet sort etc */}
+      <div></div>
+
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-5">
         <table className="table table-zebra">
           {/* head */}
           <thead>
             <tr>
-              <th>No</th>
-              <th>Invoice</th>
-              <th>Customer Name</th>
-              <th>Status</th>
-              <th>Order Number</th>
-              <th>Amount </th>
-              <th>Tender Type</th>
-              <th>Date</th>
-              <th>Action </th>
+              <th className="font-bold text-black">No</th>
+              <th className="font-bold text-black">Invoice</th>
+              <th className="font-bold text-black">Customer Name</th>
+              <th className="font-bold text-black">Status</th>
+              <th className="font-bold text-black">Order Number</th>
+              <th className="font-bold text-black">Amount </th>
+              <th className="font-bold text-black">Tender Type</th>
+              <th className="font-bold text-black">Date</th>
+              <th className="font-bold text-black">Action </th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            {
-                invoices.map((invoice, index) => <tr key={invoice.invoiceId}>
-              <th>{index + 1}</th>
-              <td></td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>Blue</td>
-            </tr>)
-            }
+            {invoices.map((invoice, index) => (
+              <tr key={invoice.invoiceId}>
+                <th>{index + 1}</th>
+                <td>{invoice.invoiceId}</td>
+                <td>{invoice.customerName}</td>
+                <td>
+                  <span
+                    className={
+                      invoice.status.toLowerCase() === "paid"
+                        ? "text-green-600 bg-green-200 px-7 border-2 rounded-lg"
+                        : "text-red-600  bg-red-200 px-5 border-2 rounded-lg"
+                    }
+                  >
+                    {invoice.status}
+                  </span>
+                </td>
+                <td>{invoice.invoiceId}</td>
+                <td>{invoice.amount}</td>
+                <td>{invoice.paymentType}</td>
+                <td>{invoice.issueDate}</td>
+                <td>
+                  <div className="dropdown dropdown-top dropdown-end">
+                    <div tabIndex={0} role="button" className=" m-1">
+                      ...
+                    </div>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                    >
+                      <li>
+                        <button onClick={() => handleEdit(invoice.invoiceId)}>
+                          Edit
+                        </button>
+                      </li>
+                      <li>
+                        <button onClick={() => handleDelete(invoice.invoiceId)}>
+                          Delete
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-
     </div>
   );
 };
